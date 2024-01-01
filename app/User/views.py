@@ -1,10 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, request
 from app.db import mysql
-from app.Main import allevent_len
-import requests
-# from serpapi import GoogleSearch
-# from flask_socketio import join_room,leave_room,send,SocketIO
-import app
 
 # Creating a Blueprint for user and its related routes 
 user = Blueprint("User", __name__, url_prefix="/user", template_folder="templates")

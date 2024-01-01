@@ -1,3 +1,4 @@
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 
-mysql = MySQL()
+# creating SQLAlchemy isinstance
+db = SQLAlchemy();

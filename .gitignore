@@ -1,6 +1,5 @@
-./env/
-.vscode/
+env/
+vscode/
 .cache/
 __pycache__/
-./Structure of Frontend
 ./databasesexport

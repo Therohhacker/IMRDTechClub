@@ -1,18 +1,9 @@
 from flask import Blueprint, render_template
 from flask import render_template, request, session, redirect
 from app.db import mysql
-from data import loadH2SEvets, LoadGoogleEvent
-from data import loadH2SEvets, LoadGoogleEvent
 
 # Creating a Blueprint for main pages
 main = Blueprint("Main", __name__, template_folder="templates")
-
-# Loading Json Files Of Events
-google = LoadGoogleEvent()
-Hack2Skill = loadH2SEvets()
-
-all_Events = google + Hack2Skill
-all_Events_length = len(all_Events)
 
 
 # routes for main pages like home,about,contact,etc
@@ -28,9 +19,9 @@ def home():
         cursor.execute(
             "INSERT INTO user_activity(user_id,type) VALUES(%s,%s)", (session['id'], msg))
         mysql.connection.commit()
-        return render_template('home.html', username=session['username'], fe=featureEvent, allevents=all_Events[0:4])
+        return render_template('home.html', username=session['username'], fe=featureEvent)
     else:
-        return render_template('home.html', fe=featureEvent, allevents=all_Events[0:4])
+        return render_template('home.html', fe=featureEvent)
 
 
 @main.route('/about')
@@ -71,8 +62,7 @@ def all_events():
             "INSERT INTO user_activity(user_id,type) VALUES(%s,%s)", (session['id'], msg))
         mysql.connection.commit()
         return render_template('all_events.html',
-                               username=session['username'],
-                               event=all_Events)
+                               username=session['username'])
     return redirect('/login')
 
 
